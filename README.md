@@ -60,28 +60,110 @@ Traditional asset-focused monitoring can show that a road has failed, but it doe
 
 Cascade Shield represents the road system as a network graph and simulates how disruption moves through that network.
 
+**Failure → Flow Redistribution → Secondary Stress → Critical Access Impact → Intervention → Before vs After**
+
+The system allows users to:
+
+- Simulate infrastructure failures over time
+- Analyze secondary bottlenecks and overloaded corridors
+- Compare multiple simultaneous failures
+- Measure simulated hospital accessibility
+- Calculate a Ripple Impact Score (RIS)
+- Test resilience interventions
+- Compare network conditions before and after mitigation
+- Stress-test roads to identify potential single points of failure
+
+---
+
+## Key Features
+
+| Feature | Purpose |
+|---|---|
+| **Cascade Simulator** | Shows how one failure propagates through the network over time |
+| **Multi-Corridor Analysis** | Simulates and compares simultaneous corridor failures |
+| **Hospital Access** | Measures simulated travel latency to critical hospital access points |
+| **Intervention Engine** | Tests protection, diversion and capacity interventions |
+| **Before vs After** | Compares network conditions before and after mitigation |
+| **Proactive Stress-Test** | Identifies vulnerable single points of failure |
+| **Custom Failure Injection** | Allows users to create their own failure combinations |
+| **Interactive Map** | Visualizes roads, failures, bottlenecks and critical facilities |
+| **Guided Demo** | Provides a structured walkthrough of the prototype |
+| **Gemini Explanations** | Converts simulation results into operational explanations |
+
+---
+
+## Project Structure
+
 ```text
-                ┌──────────────────────┐
-                │   Failure Scenario   │
-                └──────────┬───────────┘
-                           ↓
-                ┌──────────────────────┐
-                │ Flow Redistribution  │
-                └──────────┬───────────┘
-                           ↓
-                ┌──────────────────────┐
-                │   Secondary Stress   │
-                └──────────┬───────────┘
-                           ↓
-                ┌──────────────────────┐
-                │ Critical Access      │
-                │ Impact               │
-                └──────────┬───────────┘
-                           ↓
-                ┌──────────────────────┐
-                │ Intervention Engine  │
-                └──────────┬───────────┘
-                           ↓
-                ┌──────────────────────┐
-                │ Before vs. After     │
-                └──────────────────────┘
+CASCADE-SHIELD/
+├── src/
+│   ├── components/
+│   │   ├── Map/
+│   │   ├── Panels/
+│   │   └── Timeline/
+│   ├── data/
+│   │   └── networkData.ts
+│   ├── engine/
+│   │   └── simulationEngine.ts
+│   ├── services/
+│   │   └── aiService.ts
+│   ├── App.tsx
+│   └── main.tsx
+├── server.ts
+├── package.json
+├── package-lock.json
+├── vite.config.ts
+├── tsconfig.json
+└── README.md
+```
+
+---
+
+## Screenshots
+**Cascade Simulator**
+<img width="1917" height="863" alt="image" src="https://github.com/user-attachments/assets/9b69d473-1ca6-4ba2-8cc9-d839b898c915" />
+
+**Multi-Corridor Analysis**
+<img width="1917" height="866" alt="image" src="https://github.com/user-attachments/assets/3695d4d0-a4f8-4db0-81a1-2b55c70d3f6b" />
+
+**Hospital Access**
+<img width="1917" height="872" alt="image" src="https://github.com/user-attachments/assets/fef36caf-aa77-4f8c-b5ab-bf9e21cf005c" />
+
+**Intervention Engine**
+<img width="1916" height="860" alt="image" src="https://github.com/user-attachments/assets/6aaf5c8c-82c4-45dd-9c7f-ec8dabdd4b8f" />
+
+**Before vs After**
+<img width="1917" height="862" alt="image" src="https://github.com/user-attachments/assets/f20a6346-2fa8-44a9-be5b-d269241698b5" />
+
+**Proactive Stress-Test**
+<img width="1917" height="857" alt="image" src="https://github.com/user-attachments/assets/e1d374b0-9908-44f7-b108-59c3f4aa241e" />
+
+---
+
+## Architecture
+
+```text
+                Cascade Shield
+                      |
+        +-------------+-------------+
+        |                           |
+   React / TypeScript          Express Server
+        |                           |
+        |                    Optional Gemini API
+        |                           |
+        +-------------+-------------+
+                      |
+            Deterministic Engine
+                      |
+        +-------------+-------------+
+        |             |             |
+   Network Model  Cascade Logic  Interventions
+        |             |             |
+        +-------------+-------------+
+                      |
+             Simulation Results
+                      |
+       +--------------+--------------+
+       |              |              |
+    Network       Hospital          RIS
+     Impact        Access
